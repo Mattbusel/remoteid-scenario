@@ -1,0 +1,20 @@
+[package]
+name = "remoteid-scenario"
+version = "0.1.0"
+authors = ["Matt Busel <matt@busel.dev>"]
+edition = "2021"
+rust-version = "1.70"
+description = "Test-vector generator for counter-UAS detectors: writes spec-compliant Remote ID message streams (flood, spoof, clean, count-spike, co-located) to a file or stdout as RIDF, pcap or JSON lines. A bench harness like a fuzzer corpus or an EICAR test file. Data only, no radio and no transmit path."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Mattbusel/remoteid-scenario"
+keywords = ["remote-id", "drone", "counter-uas", "test-vector", "spoofing"]
+categories = ["aerospace::drones", "simulation", "development-tools::testing"]
+
+[dependencies]
+remoteid = { version = "0.3.3", default-features = false, features = ["std", "serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[[bin]]
+name = "remoteid-scenario"
+path = "src/bin/remoteid-scenario.rs"
