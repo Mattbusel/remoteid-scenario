@@ -1,19 +1,16 @@
 # remoteid-scenario
 
-Test-vector generator for counter-UAS detectors. It writes spec-compliant
-Remote ID message streams to a file or stdout so you can pipe a synthetic
-flood, spoof or clean baseline into your detection software and prove the
-detector reacts the way it should.
+**Your counter-drone detector claims it can pick the one real drone out of a spoofed swarm of hundreds. This builds the swarm and checks that it can.**
 
-This is a bench harness, not a sensor and not a transmitter. It is to a
-counter-UAS detector what a fuzzer corpus or the EICAR test file is to the
-software it exercises: known inputs with a known right answer, so you can
-regression-test the thing that is supposed to catch them.
+![A flood scenario: hundreds of templated fakes from one source, with one genuine moving track hidden inside](docs/demo.gif)
 
-It builds every frame with the published
-[`remoteid`](https://crates.io/crates/remoteid) 0.3.3 encoders, the same ones
-that encode frames for firmware, and aims them at a file instead of a radio.
-Nothing on the RF side is new here.
+[**Live demo**](https://mattbusel.github.io/drone-demos/) &nbsp;|&nbsp;
+[![crates.io](https://img.shields.io/crates/v/remoteid-scenario.svg)](https://crates.io/crates/remoteid-scenario)
+[![downloads](https://img.shields.io/crates/d/remoteid-scenario.svg)](https://crates.io/crates/remoteid-scenario)
+[![docs.rs](https://img.shields.io/docsrs/remoteid-scenario)](https://docs.rs/remoteid-scenario)
+[![license](https://img.shields.io/crates/l/remoteid-scenario.svg)](#license)
+
+remoteid-scenario writes spec-compliant Remote ID message streams to a file or stdout so you can feed a synthetic flood, spoof or clean baseline into your detection software and prove the detector reacts the way it should. It is a bench harness, not a sensor and not a transmitter: known inputs with a known right answer, the way a fuzzer corpus or the EICAR test file exercises the software it targets. Every frame is built with the published [`remoteid`](https://crates.io/crates/remoteid) 0.3.3 encoders, the same ones that encode frames for firmware, and every format round-trips back through remoteid's own decoders to the exact messages that were generated. The test suite asserts it, so the vectors you hand your detector are provably the ones it is supposed to catch.
 
 ## Hard boundaries
 
